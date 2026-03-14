@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Priya Sharma — Personal Training & Wellness Coaching</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Syne:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --cream: #f7f3ee;
+    --warm: #ede8e0;
+    --forest: #2c3e2d;
+    --forest-light: #3d5c3e;
+    --earth: #8b6f47;
+    --earth-light: #c4a882;
+    --ink: #1a1a18;
+    --muted: #8a8478;
+    --white: #ffffff;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'Syne', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.8rem 5rem;
+    background: rgba(247,243,238,0.92);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(139,111,71,0.12);
+  }
+  .nav-logo {
+    display: flex;
+    flex-direction: column;
+  }
+  .nav-logo-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    color: var(--ink);
+  }
+  .nav-logo-sub {
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 1px;
+  }
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--forest); }
+  .nav-cta {
+    background: var(--forest);
+    color: var(--cream);
+    text-decoration: none;
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.75rem 1.8rem;
+    transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--forest-light); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 7rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5rem 4rem 5rem 5rem;
+    position: relative;
+    z-index: 2;
+  }
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    margin-bottom: 3rem;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.2s forwards;
+  }
+  .tag-line {
+    width: 32px;
+    height: 1px;
+    background: var(--earth);
+  }
+  .tag-text {
+    font-size: 0.68rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--earth);
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3.5rem, 6vw, 6.5rem);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin-bottom: 2.5rem;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.4s forwards;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--forest);
+  }
+  .hero-title .outline-text {
+    -webkit-text-stroke: 1px rgba(44,62,45,0.3);
+    color: transparent;
+  }
+  .hero-desc {
+    font-size: 0.88rem;
+    line-height: 1.9;
+    color: var(--muted);
+    max-width: 380px;
+    margin-bottom: 3.5rem;
+    letter-spacing: 0.02em;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.6s forwards;
+  }
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.8s forwards;
+  }
+  .btn-forest {
+    display: inline-block;
+    background: var(--forest);
+    color: var(--cream);
+    text-decoration: none;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 1.1rem 2.8rem;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .btn-forest:hover { background: var(--forest-light); transform: translateY(-2px); }
+  .btn-text {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .btn-text:hover { color: var(--forest); }
+  .btn-text::after { content: '↓'; transition: transform 0.2s; }
+  .btn-text:hover::after { transform: translateY(3px); }
+
+  /* HERO FLOATING STATS */
+  .hero-floating-stat {
+    position: absolute;
+    bottom: 4rem;
+    left: 5rem;
+    display: flex;
+    gap: 3rem;
+    opacity: 0;
+    animation: fadeUp 0.9s 1s forwards;
+  }
+  .f-stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 400;
+    color: var(--forest);
+    line-height: 1;
+    margin-bottom: 0.2rem;
+  }
+  .f-stat-label {
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .hero-right {
+    position: relative;
+    background: var(--forest);
+    overflow: hidden;
+    opacity: 0;
+    animation: fadeIn 1.2s 0.3s forwards;
+  }
+  .hero-right-inner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .hero-bg-letter {
+    font-family: 'Playfair Display', serif;
+    font-size: 40vw;
+    font-weight: 700;
+    font-style: italic;
+    color: rgba(255,255,255,0.03);
+    position: absolute;
+    user-select: none;
+    line-height: 1;
+  }
+  .hero-right-overlay {
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse at 30% 60%, rgba(196,168,130,0.12) 0%, transparent 55%),
+      radial-gradient(ellipse at 80% 20%, rgba(255,255,255,0.04) 0%, transparent 40%);
+  }
+  .hero-pill {
+    position: absolute;
+    bottom: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    backdrop-filter: blur(8px);
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    white-space: nowrap;
+  }
+  .pill-dot {
+    width: 8px; height: 8px;
+    background: #6fcf5e;
+    border-radius: 50%;
+    animation: blink 2s infinite;
+  }
+  .pill-text {
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(247,243,238,0.8);
+  }
+  .hero-right-tag {
+    position: absolute;
+    top: 3rem;
+    right: 3rem;
+    writing-mode: vertical-rl;
+    font-size: 0.62rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(247,243,238,0.25);
+  }
+
+  /* MARQUEE */
+  .marquee {
+    background: var(--forest);
+    padding: 1rem 0;
+    overflow: hidden;
+  }
+  .marquee-track {
+    display: flex;
+    white-space: nowrap;
+    animation: marquee 20s linear infinite;
+  }
+  .marquee-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 2rem;
+    padding-right: 2rem;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(247,243,238,0.5);
+  }
+  .marquee-item .leaf { color: var(--earth-light); }
+
+  /* ABOUT */
+  .about {
+    padding: 9rem 5rem;
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 8rem;
+    align-items: center;
+  }
+  .about-left { position: relative; }
+  .about-main-box {
+    width: 80%;
+    aspect-ratio: 3/4;
+    background: var(--warm);
+    border: 1px solid rgba(139,111,71,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .about-main-box::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 40%, rgba(44,62,45,0.06) 0%, transparent 60%);
+  }
+  .about-letter {
+    font-family: 'Playfair Display', serif;
+    font-size: 18rem;
+    font-weight: 700;
+    font-style: italic;
+    color: rgba(44,62,45,0.05);
+    user-select: none;
+    line-height: 1;
+  }
+  .about-accent-box {
+    position: absolute;
+    bottom: -3rem;
+    right: -3rem;
+    width: 55%;
+    background: var(--forest);
+    padding: 2rem;
+    text-align: center;
+  }
+  .accent-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 400;
+    color: var(--cream);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .accent-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(247,243,238,0.5);
+  }
+  .about-dot-row {
+    display: flex;
+    gap: 0.4rem;
+    margin-top: 2.5rem;
+  }
+  .about-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--earth-light);
+  }
+  .about-dot:nth-child(2) { background: var(--earth); }
+  .about-dot:nth-child(3) { background: var(--forest-light); }
+  .about-dot:nth-child(n+4) { background: rgba(139,111,71,0.2); }
+
+  .about-eyebrow {
+    font-size: 0.68rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--earth);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  .about-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--earth); }
+  .about-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 4vw, 4rem);
+    font-weight: 400;
+    line-height: 1.1;
+    margin-bottom: 2rem;
+  }
+  .about-title em { font-style: italic; color: var(--forest); }
+  .about-text {
+    font-size: 0.85rem;
+    line-height: 2;
+    color: var(--muted);
+    margin-bottom: 1.2rem;
+  }
+  .cert-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 2.5rem;
+    margin-bottom: 3rem;
+  }
+  .cert-tag {
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--forest);
+    background: rgba(44,62,45,0.07);
+    border: 1px solid rgba(44,62,45,0.15);
+    padding: 0.4rem 0.9rem;
+  }
+
+  /* SERVICES */
+  .services {
+    padding: 8rem 5rem;
+    background: var(--ink);
+    position: relative;
+    overflow: hidden;
+  }
+  .services::before {
+    content: 'TRANSFORM';
+    font-family: 'Playfair Display', serif;
+    font-size: 18rem;
+    font-weight: 700;
+    font-style: italic;
+    color: rgba(255,255,255,0.02);
+    position: absolute;
+    bottom: -2rem;
+    left: -2rem;
+    user-select: none;
+    white-space: nowrap;
+  }
+  .services-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 5rem;
+    position: relative;
+    z-index: 1;
+  }
+  .services-eyebrow {
+    font-size: 0.68rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--earth-light);
+    margin-bottom: 1.2rem;
+  }
+  .services-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 5vw, 5rem);
+    font-weight: 400;
+    line-height: 1;
+    color: var(--cream);
+  }
+  .services-title em { font-style: italic; color: rgba(247,243,238,0.3); }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: rgba(255,255,255,0.05);
+    position: relative;
+    z-index: 1;
+  }
+  .service-card {
+    background: var(--ink);
+    padding: 3.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+  }
+  .service-card:hover { background: #222220; }
+  .service-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 8rem;
+    font-weight: 400;
+    font-style: italic;
+    color: rgba(255,255,255,0.03);
+    position: absolute;
+    top: 0; right: 1.5rem;
+    line-height: 1;
+    transition: color 0.3s;
+  }
+  .service-card:hover .service-num { color: rgba(196,168,130,0.06); }
+  .service-icon-wrap {
+    width: 50px; height: 50px;
+    border: 1px solid rgba(196,168,130,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+    font-size: 1.3rem;
+  }
+  .service-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+  .service-desc {
+    font-size: 0.8rem;
+    line-height: 1.9;
+    color: rgba(138,132,120,0.9);
+    margin-bottom: 2rem;
+  }
+  .service-price {
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--earth-light);
+  }
+  .service-price span {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 400;
+    font-style: italic;
+    margin-left: 0.4rem;
+    color: var(--cream);
+  }
+
+  /* TESTIMONIALS */
+  .testimonials {
+    padding: 9rem 5rem;
+    background: var(--warm);
+  }
+  .test-header {
+    text-align: center;
+    margin-bottom: 5rem;
+  }
+  .test-eyebrow {
+    font-size: 0.68rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--earth);
+    margin-bottom: 1.5rem;
+  }
+  .test-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 4vw, 4rem);
+    font-weight: 400;
+    line-height: 1.1;
+  }
+  .test-title em { font-style: italic; color: var(--forest); }
+  .test-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+  .test-card {
+    background: var(--cream);
+    border: 1px solid rgba(139,111,71,0.1);
+    padding: 2.5rem;
+    position: relative;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .test-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(44,62,45,0.08);
+  }
+  .test-quote-mark {
+    font-family: 'Playfair Display', serif;
+    font-size: 5rem;
+    font-weight: 700;
+    font-style: italic;
+    color: rgba(44,62,45,0.06);
+    line-height: 0.7;
+    margin-bottom: 1.5rem;
+    display: block;
+  }
+  .test-text {
+    font-size: 0.85rem;
+    line-height: 1.9;
+    color: var(--muted);
+    margin-bottom: 2rem;
+    font-style: italic;
+  }
+  .test-divider {
+    width: 30px;
+    height: 1px;
+    background: var(--earth-light);
+    margin-bottom: 1.5rem;
+  }
+  .test-name {
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: var(--ink);
+    margin-bottom: 0.3rem;
+  }
+  .test-role {
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .test-stars {
+    position: absolute;
+    top: 2.5rem;
+    right: 2.5rem;
+    font-size: 0.65rem;
+    color: var(--earth);
+    letter-spacing: 0.1em;
+  }
+
+  /* CTA */
+  .cta {
+    padding: 9rem 5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+    position: relative;
+  }
+  .cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 20% 50%, rgba(44,62,45,0.04) 0%, transparent 60%);
+  }
+  .cta-left { position: relative; z-index: 1; }
+  .cta-eyebrow {
+    font-size: 0.68rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--earth);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  .cta-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--earth); }
+  .cta-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 5vw, 5rem);
+    font-weight: 400;
+    line-height: 1.05;
+    margin-bottom: 2rem;
+  }
+  .cta-title em { font-style: italic; color: var(--forest); }
+  .cta-text {
+    font-size: 0.85rem;
+    line-height: 2;
+    color: var(--muted);
+    margin-bottom: 3rem;
+  }
+  .cta-actions { display: flex; align-items: center; gap: 2rem; }
+  .cta-right {
+    position: relative;
+    z-index: 1;
+    background: var(--forest);
+    padding: 4rem;
+  }
+  .form-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--cream);
+    margin-bottom: 2.5rem;
+  }
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  .form-label {
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(247,243,238,0.4);
+    display: block;
+    margin-bottom: 0.6rem;
+  }
+  .form-input {
+    width: 100%;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--cream);
+    font-family: 'Syne', sans-serif;
+    font-size: 0.85rem;
+    padding: 0.9rem 1.1rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-input::placeholder { color: rgba(247,243,238,0.2); }
+  .form-input:focus { border-color: rgba(196,168,130,0.4); }
+  .form-select {
+    width: 100%;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--cream);
+    font-family: 'Syne', sans-serif;
+    font-size: 0.85rem;
+    padding: 0.9rem 1.1rem;
+    outline: none;
+    appearance: none;
+    cursor: pointer;
+  }
+  .form-select option { background: var(--forest); }
+  .btn-submit {
+    width: 100%;
+    background: var(--earth);
+    color: var(--cream);
+    border: none;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 1.2rem;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    transition: background 0.2s;
+  }
+  .btn-submit:hover { background: var(--earth-light); }
+  .form-note {
+    font-size: 0.65rem;
+    color: rgba(247,243,238,0.3);
+    text-align: center;
+    margin-top: 1.2rem;
+    letter-spacing: 0.05em;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink);
+    padding: 3.5rem 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }
+  .footer-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--cream);
+  }
+  .footer-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+  .footer-links a {
+    color: rgba(138,132,120,0.6);
+    text-decoration: none;
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--cream); }
+  .footer-copy {
+    font-size: 0.62rem;
+    color: rgba(138,132,120,0.4);
+    letter-spacing: 0.08em;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(25px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.9s 0.2s ease, transform 0.9s 0.2s ease;
+  }
+  .reveal-delay.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <span class="nav-logo-name">Priya Sharma</span>
+    <span class="nav-logo-sub">Personal Trainer & Wellness Coach</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#">About</a></li>
+    <li><a href="#">Services</a></li>
+    <li><a href="#">Testimonials</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+  <a href="#" class="nav-cta">Book a Call</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">
+      <div class="tag-line"></div>
+      <span class="tag-text">Delhi NCR · Online · In-Person</span>
+    </div>
+    <h1 class="hero-title">
+      Your body<br>
+      is <em>capable</em><br>
+      of <span class="outline-text">more.</span>
+    </h1>
+    <p class="hero-desc">I help busy professionals and women in Delhi build bodies they're proud of — through smart training, sustainable nutrition, and coaching that actually fits your life.</p>
+    <div class="hero-actions">
+      <a href="#" class="btn-forest">Book Free Consultation</a>
+      <a href="#" class="btn-text">See My Work</a>
+    </div>
+    <div class="hero-floating-stat">
+      <div>
+        <div class="f-stat-num">340+</div>
+        <div class="f-stat-label">Clients Transformed</div>
+      </div>
+      <div>
+        <div class="f-stat-num">7yr</div>
+        <div class="f-stat-label">Experience</div>
+      </div>
+      <div>
+        <div class="f-stat-num">4.9★</div>
+        <div class="f-stat-label">Google Reviews</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-right-inner">
+      <span class="hero-bg-letter">P</span>
+      <div class="hero-right-overlay"></div>
+      <span class="hero-right-tag">Certified Coach · Delhi</span>
+      <div class="hero-pill">
+        <span class="pill-dot"></span>
+        <span class="pill-text">Currently Accepting New Clients</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="marquee-track">
+    <span class="marquee-item"><span class="leaf">✦</span> Fat Loss</span>
+    <span class="marquee-item"><span class="leaf">✦</span> Strength Training</span>
+    <span class="marquee-item"><span class="leaf">✦</span> Postpartum Fitness</span>
+    <span class="marquee-item"><span class="leaf">✦</span> Nutrition Coaching</span>
+    <span class="marquee-item"><span class="leaf">✦</span> Online Programs</span>
+    <span class="marquee-item"><span class="leaf">✦</span> Lifestyle Transformation</span>
+    <span class="marquee-item"><span class="leaf">✦</span> Fat Loss</span>
+    <span class="marquee-item"><span class="leaf">✦</span> Strength Training</span>
+    <span class="marquee-item"><span class="leaf">✦</span> Postpartum Fitness</span>
+    <span class="marquee-item"><span class="leaf">✦</span> Nutrition Coaching</span>
+    <span class="marquee-item"><span class="leaf">✦</span> Online Programs</span>
+    <span class="marquee-item"><span class="leaf">✦</span> Lifestyle Transformation</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about">
+  <div class="about-left reveal">
+    <div class="about-main-box">
+      <span class="about-letter">P</span>
+    </div>
+    <div class="about-accent-box">
+      <div class="accent-num">340+</div>
+      <div class="accent-label">Lives Changed</div>
+    </div>
+    <div class="about-dot-row">
+      <div class="about-dot"></div>
+      <div class="about-dot"></div>
+      <div class="about-dot"></div>
+      <div class="about-dot"></div>
+      <div class="about-dot"></div>
+    </div>
+  </div>
+  <div class="about-right reveal-delay">
+    <p class="about-eyebrow">About Me</p>
+    <h2 class="about-title">I'm not your<br>average <em>trainer.</em></h2>
+    <p class="about-text">I spent 3 years as a corporate professional before becoming a certified trainer. I know what it means to have zero time, high stress, and a body that's running on empty. That experience shapes every program I build.</p>
+    <p class="about-text">My approach is rooted in science — not trends. No crash diets. No unsustainable 2-a-days. Just smart, progressive work that compounds over time and teaches you to sustain results for life.</p>
+    <div class="cert-row">
+      <span class="cert-tag">NASM Certified PT</span>
+      <span class="cert-tag">Precision Nutrition L1</span>
+      <span class="cert-tag">Pre/Postnatal Coach</span>
+      <span class="cert-tag">Corrective Exercise</span>
+    </div>
+    <a href="#" class="btn-forest">Read My Full Story</a>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services">
+  <div class="services-header reveal">
+    <div>
+      <p class="services-eyebrow">What I Offer</p>
+      <h2 class="services-title">Services &amp; <em>Programs</em></h2>
+    </div>
+  </div>
+  <div class="services-grid reveal">
+    <div class="service-card">
+      <span class="service-num">01</span>
+      <div class="service-icon-wrap">💪</div>
+      <h3 class="service-name">1-on-1 Personal Training</h3>
+      <p class="service-desc">Fully personalised sessions at your gym or home in Delhi NCR. Each session is programmed specifically for your body, your goals, and your current fitness level. No cookie-cutter routines.</p>
+      <div class="service-price">Starting at <span>₹2,500/session</span></div>
+    </div>
+    <div class="service-card">
+      <span class="service-num">02</span>
+      <div class="service-icon-wrap">📱</div>
+      <h3 class="service-name">Online Coaching</h3>
+      <p class="service-desc">Get a fully custom program, weekly check-ins, nutrition guidance, and WhatsApp support — wherever you are. My most popular offer for busy professionals who travel or work from home.</p>
+      <div class="service-price">Starting at <span>₹8,000/month</span></div>
+    </div>
+    <div class="service-card">
+      <span class="service-num">03</span>
+      <div class="service-icon-wrap">🥗</div>
+      <h3 class="service-name">Nutrition Coaching</h3>
+      <p class="service-desc">Macro-based meal planning built around Indian food. No bland chicken and broccoli — sustainable nutrition that actually works with your culture, your schedule, and your taste.</p>
+      <div class="service-price">Starting at <span>₹5,000/month</span></div>
+    </div>
+    <div class="service-card">
+      <span class="service-num">04</span>
+      <div class="service-icon-wrap">🌿</div>
+      <h3 class="service-name">12-Week Transformation</h3>
+      <p class="service-desc">My signature program — training, nutrition, mindset, and accountability all in one. This is for women who are done with quick fixes and want a permanent change. Results guaranteed or money back.</p>
+      <div class="service-price">Starting at <span>₹35,000</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="test-header reveal">
+    <p class="test-eyebrow">Client Stories</p>
+    <h2 class="test-title">Results that <em>speak.</em></h2>
+  </div>
+  <div class="test-grid reveal">
+    <div class="test-card">
+      <span class="test-stars">★★★★★</span>
+      <span class="test-quote-mark">"</span>
+      <p class="test-text">Priya completely changed my relationship with fitness. I'd tried gyms before and always quit. With her I've been consistent for 8 months. Lost 11 kgs and feel stronger than I did in my 20s.</p>
+      <div class="test-divider"></div>
+      <p class="test-name">Ritu Agarwal</p>
+      <p class="test-role">Marketing Manager, Gurgaon</p>
+    </div>
+    <div class="test-card">
+      <span class="test-stars">★★★★★</span>
+      <span class="test-quote-mark">"</span>
+      <p class="test-text">The online coaching is exceptional. She's available on WhatsApp, adjusts my plan based on how my week is going, and never makes me feel guilty for missing a session. Real-life coaching for real life.</p>
+      <div class="test-divider"></div>
+      <p class="test-name">Ananya Kapoor</p>
+      <p class="test-role">Software Engineer, Remote</p>
+    </div>
+    <div class="test-card">
+      <span class="test-stars">★★★★★</span>
+      <span class="test-quote-mark">"</span>
+      <p class="test-text">I came to Priya 4 months postpartum, feeling lost in my own body. She was patient, knowledgeable, and incredibly encouraging. I'm now fitter than pre-pregnancy. Cannot recommend enough.</p>
+      <div class="test-divider"></div>
+      <p class="test-name">Deepika Mehta</p>
+      <p class="test-role">New Mother, South Delhi</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA / CONTACT -->
+<section class="cta">
+  <div class="cta-left reveal">
+    <p class="cta-eyebrow">Let's Talk</p>
+    <h2 class="cta-title">Ready to start<br>your <em>journey?</em></h2>
+    <p class="cta-text">Book a free 20-minute discovery call. We'll talk about your goals, your lifestyle, and whether we're a good fit. No pressure, no pitch — just an honest conversation.</p>
+    <div class="cta-actions">
+      <a href="#" class="btn-forest">Book Free Call</a>
+    </div>
+  </div>
+  <div class="cta-right reveal-delay">
+    <p class="form-title">Send a message</p>
+    <div class="form-group">
+      <label class="form-label">Your Name</label>
+      <input type="text" class="form-input" placeholder="Sneha Gupta">
+    </div>
+    <div class="form-group">
+      <label class="form-label">WhatsApp Number</label>
+      <input type="text" class="form-input" placeholder="+91 98765 43210">
+    </div>
+    <div class="form-group">
+      <label class="form-label">I'm interested in</label>
+      <select class="form-select">
+        <option>1-on-1 Personal Training</option>
+        <option>Online Coaching</option>
+        <option>Nutrition Coaching</option>
+        <option>12-Week Transformation</option>
+      </select>
+    </div>
+    <button class="btn-submit">Send Message →</button>
+    <p class="form-note">I respond within 24 hours · No spam ever</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-name">Priya Sharma</span>
+  <ul class="footer-links">
+    <li><a href="#">Instagram</a></li>
+    <li><a href="#">YouTube</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+  <p class="footer-copy">© 2025 Priya Sharma Fitness. All rights reserved.</p>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal, .reveal-delay').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
