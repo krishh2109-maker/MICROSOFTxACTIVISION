@@ -1,1039 +1,1746 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Priya Sharma — Personal Training & Wellness Coaching</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Syne:wght@300;400;500;600&display=swap" rel="stylesheet">
-<style>
-  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Microsoft × Activision — M&A Deal Teardown | Institutional Finance Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+  <style>
+    /* ── TOKEN SYSTEM ───────────────────────────────── */
+    :root {
+      --bg:        #030406;
+      --bg-gradient: radial-gradient(1200px 600px at 80% -10%, rgba(6, 182, 212, 0.08) 0%, rgba(3, 4, 6, 0.99) 65%);
+      --surface:   #090b0f;
+      --surface2:  #0f121a;
+      --border:    rgba(255, 255, 255, 0.06);
+      --border-glow: rgba(6, 182, 212, 0.2);
+      --accent:    #06b6d4;         /* Premium Sky Cyan */
+      --accent-glow: rgba(6, 182, 212, 0.35);
+      --accent2:   #f43f5e;         /* Premium Rose Red */
+      --accent2-bg: rgba(244, 63, 94, 0.06);
+      --accent2-border: rgba(244, 63, 94, 0.25);
+      --accent2-glow: rgba(244, 63, 94, 0.2);
+      --accent3:   #f59e0b;         /* Premium Gold/Amber */
+      --success:   #10b981;         /* Emerald green */
+      --success-bg: rgba(16, 185, 129, 0.06);
+      --success-border: rgba(16, 185, 129, 0.25);
+      --success-glow: rgba(16, 185, 129, 0.2);
+      --text:      #f1f5f9;
+      --muted:     #64748b;
+      --muted-dark: #1e293b;
+      --display:   'Plus Jakarta Sans', sans-serif;
+      --mono:      'JetBrains Mono', monospace;
+      --body:      'Inter', sans-serif;
+      --radius-lg: 16px;
+      --radius-md: 10px;
+    }
 
-  :root {
-    --cream: #f7f3ee;
-    --warm: #ede8e0;
-    --forest: #2c3e2d;
-    --forest-light: #3d5c3e;
-    --earth: #8b6f47;
-    --earth-light: #c4a882;
-    --ink: #1a1a18;
-    --muted: #8a8478;
-    --white: #ffffff;
-  }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; }
 
-  body {
-    background: var(--cream);
-    color: var(--ink);
-    font-family: 'Syne', sans-serif;
-    font-weight: 300;
-    overflow-x: hidden;
-  }
+    body {
+      background: var(--bg);
+      background-image: var(--bg-gradient);
+      color: var(--text);
+      font-family: var(--body);
+      font-size: 15px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
 
-  /* NAV */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1.8rem 5rem;
-    background: rgba(247,243,238,0.92);
-    backdrop-filter: blur(16px);
-    border-bottom: 1px solid rgba(139,111,71,0.12);
-  }
-  .nav-logo {
-    display: flex;
-    flex-direction: column;
-  }
-  .nav-logo-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.1rem;
-    font-weight: 400;
-    letter-spacing: 0.05em;
-    color: var(--ink);
-  }
-  .nav-logo-sub {
-    font-size: 0.6rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-top: 1px;
-  }
-  .nav-links {
-    display: flex;
-    gap: 2.5rem;
-    list-style: none;
-  }
-  .nav-links a {
-    color: var(--muted);
-    text-decoration: none;
-    font-size: 0.75rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    transition: color 0.2s;
-  }
-  .nav-links a:hover { color: var(--forest); }
-  .nav-cta {
-    background: var(--forest);
-    color: var(--cream);
-    text-decoration: none;
-    font-size: 0.72rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    padding: 0.75rem 1.8rem;
-    transition: background 0.2s;
-  }
-  .nav-cta:hover { background: var(--forest-light); }
+    /* ── LAYOUT ─────────────────────────────────────── */
+    .container { max-width: 860px; margin: 0 auto; padding: 0 24px; }
 
-  /* HERO */
-  .hero {
-    min-height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding-top: 7rem;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero-left {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 5rem 4rem 5rem 5rem;
-    position: relative;
-    z-index: 2;
-  }
-  .hero-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.7rem;
-    margin-bottom: 3rem;
-    opacity: 0;
-    animation: fadeUp 0.9s 0.2s forwards;
-  }
-  .tag-line {
-    width: 32px;
-    height: 1px;
-    background: var(--earth);
-  }
-  .tag-text {
-    font-size: 0.68rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--earth);
-  }
-  .hero-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(3.5rem, 6vw, 6.5rem);
-    font-weight: 400;
-    line-height: 1.05;
-    letter-spacing: -0.01em;
-    color: var(--ink);
-    margin-bottom: 2.5rem;
-    opacity: 0;
-    animation: fadeUp 0.9s 0.4s forwards;
-  }
-  .hero-title em {
-    font-style: italic;
-    color: var(--forest);
-  }
-  .hero-title .outline-text {
-    -webkit-text-stroke: 1px rgba(44,62,45,0.3);
-    color: transparent;
-  }
-  .hero-desc {
-    font-size: 0.88rem;
-    line-height: 1.9;
-    color: var(--muted);
-    max-width: 380px;
-    margin-bottom: 3.5rem;
-    letter-spacing: 0.02em;
-    opacity: 0;
-    animation: fadeUp 0.9s 0.6s forwards;
-  }
-  .hero-actions {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    opacity: 0;
-    animation: fadeUp 0.9s 0.8s forwards;
-  }
-  .btn-forest {
-    display: inline-block;
-    background: var(--forest);
-    color: var(--cream);
-    text-decoration: none;
-    font-size: 0.72rem;
-    font-weight: 500;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    padding: 1.1rem 2.8rem;
-    transition: background 0.2s, transform 0.2s;
-  }
-  .btn-forest:hover { background: var(--forest-light); transform: translateY(-2px); }
-  .btn-text {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    color: var(--muted);
-    text-decoration: none;
-    font-size: 0.72rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    transition: color 0.2s;
-  }
-  .btn-text:hover { color: var(--forest); }
-  .btn-text::after { content: '↓'; transition: transform 0.2s; }
-  .btn-text:hover::after { transform: translateY(3px); }
+    /* ── NAV ────────────────────────────────────────── */
+    nav {
+      border-bottom: 1px solid var(--border);
+      padding: 20px 0;
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(3, 4, 6, 0.9);
+      backdrop-filter: blur(16px);
+    }
+    nav .inner {
+      max-width: 860px; margin: 0 auto; padding: 0 24px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .nav-brand {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .nav-brand span { color: var(--accent); }
+    .nav-tag {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      border: 1px solid var(--border);
+      padding: 4px 12px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.02);
+    }
 
-  /* HERO FLOATING STATS */
-  .hero-floating-stat {
-    position: absolute;
-    bottom: 4rem;
-    left: 5rem;
-    display: flex;
-    gap: 3rem;
-    opacity: 0;
-    animation: fadeUp 0.9s 1s forwards;
-  }
-  .f-stat-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.5rem;
-    font-weight: 400;
-    color: var(--forest);
-    line-height: 1;
-    margin-bottom: 0.2rem;
-  }
-  .f-stat-label {
-    font-size: 0.62rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
+    /* ── HERO ───────────────────────────────────────── */
+    .hero {
+      padding: 80px 0 64px;
+      border-bottom: 1px solid var(--border);
+    }
 
-  .hero-right {
-    position: relative;
-    background: var(--forest);
-    overflow: hidden;
-    opacity: 0;
-    animation: fadeIn 1.2s 0.3s forwards;
-  }
-  .hero-right-inner {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-  }
-  .hero-bg-letter {
-    font-family: 'Playfair Display', serif;
-    font-size: 40vw;
-    font-weight: 700;
-    font-style: italic;
-    color: rgba(255,255,255,0.03);
-    position: absolute;
-    user-select: none;
-    line-height: 1;
-  }
-  .hero-right-overlay {
-    position: absolute;
-    inset: 0;
-    background: 
-      radial-gradient(ellipse at 30% 60%, rgba(196,168,130,0.12) 0%, transparent 55%),
-      radial-gradient(ellipse at 80% 20%, rgba(255,255,255,0.04) 0%, transparent 40%);
-  }
-  .hero-pill {
-    position: absolute;
-    bottom: 3rem;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.15);
-    backdrop-filter: blur(8px);
-    padding: 1rem 2rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    white-space: nowrap;
-  }
-  .pill-dot {
-    width: 8px; height: 8px;
-    background: #6fcf5e;
-    border-radius: 50%;
-    animation: blink 2s infinite;
-  }
-  .pill-text {
-    font-size: 0.72rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: rgba(247,243,238,0.8);
-  }
-  .hero-right-tag {
-    position: absolute;
-    top: 3rem;
-    right: 3rem;
-    writing-mode: vertical-rl;
-    font-size: 0.62rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: rgba(247,243,238,0.25);
-  }
+    .deal-eyebrow {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 24px;
+      font-weight: 600;
+    }
 
-  /* MARQUEE */
-  .marquee {
-    background: var(--forest);
-    padding: 1rem 0;
-    overflow: hidden;
-  }
-  .marquee-track {
-    display: flex;
-    white-space: nowrap;
-    animation: marquee 20s linear infinite;
-  }
-  .marquee-item {
-    display: inline-flex;
-    align-items: center;
-    gap: 2rem;
-    padding-right: 2rem;
-    font-size: 0.65rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: rgba(247,243,238,0.5);
-  }
-  .marquee-item .leaf { color: var(--earth-light); }
+    .deal-title {
+      font-family: var(--display);
+      font-size: clamp(40px, 7.5vw, 72px);
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, #ffffff 40%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
 
-  /* ABOUT */
-  .about {
-    padding: 9rem 5rem;
-    display: grid;
-    grid-template-columns: 1fr 1.3fr;
-    gap: 8rem;
-    align-items: center;
-  }
-  .about-left { position: relative; }
-  .about-main-box {
-    width: 80%;
-    aspect-ratio: 3/4;
-    background: var(--warm);
-    border: 1px solid rgba(139,111,71,0.15);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-  }
-  .about-main-box::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at 50% 40%, rgba(44,62,45,0.06) 0%, transparent 60%);
-  }
-  .about-letter {
-    font-family: 'Playfair Display', serif;
-    font-size: 18rem;
-    font-weight: 700;
-    font-style: italic;
-    color: rgba(44,62,45,0.05);
-    user-select: none;
-    line-height: 1;
-  }
-  .about-accent-box {
-    position: absolute;
-    bottom: -3rem;
-    right: -3rem;
-    width: 55%;
-    background: var(--forest);
-    padding: 2rem;
-    text-align: center;
-  }
-  .accent-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 3rem;
-    font-weight: 400;
-    color: var(--cream);
-    line-height: 1;
-    margin-bottom: 0.4rem;
-  }
-  .accent-label {
-    font-size: 0.6rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: rgba(247,243,238,0.5);
-  }
-  .about-dot-row {
-    display: flex;
-    gap: 0.4rem;
-    margin-top: 2.5rem;
-  }
-  .about-dot {
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--earth-light);
-  }
-  .about-dot:nth-child(2) { background: var(--earth); }
-  .about-dot:nth-child(3) { background: var(--forest-light); }
-  .about-dot:nth-child(n+4) { background: rgba(139,111,71,0.2); }
+    .deal-title .x-mark {
+      color: var(--muted);
+      font-weight: 400;
+      margin: 0 8px;
+      -webkit-text-fill-color: initial;
+    }
 
-  .about-eyebrow {
-    font-size: 0.68rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--earth);
-    margin-bottom: 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-  }
-  .about-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--earth); }
-  .about-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2.5rem, 4vw, 4rem);
-    font-weight: 400;
-    line-height: 1.1;
-    margin-bottom: 2rem;
-  }
-  .about-title em { font-style: italic; color: var(--forest); }
-  .about-text {
-    font-size: 0.85rem;
-    line-height: 2;
-    color: var(--muted);
-    margin-bottom: 1.2rem;
-  }
-  .cert-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.6rem;
-    margin-top: 2.5rem;
-    margin-bottom: 3rem;
-  }
-  .cert-tag {
-    font-size: 0.65rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--forest);
-    background: rgba(44,62,45,0.07);
-    border: 1px solid rgba(44,62,45,0.15);
-    padding: 0.4rem 0.9rem;
-  }
+    .deal-subtitle {
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 44px;
+      letter-spacing: 0.04em;
+    }
 
-  /* SERVICES */
-  .services {
-    padding: 8rem 5rem;
-    background: var(--ink);
-    position: relative;
-    overflow: hidden;
-  }
-  .services::before {
-    content: 'TRANSFORM';
-    font-family: 'Playfair Display', serif;
-    font-size: 18rem;
-    font-weight: 700;
-    font-style: italic;
-    color: rgba(255,255,255,0.02);
-    position: absolute;
-    bottom: -2rem;
-    left: -2rem;
-    user-select: none;
-    white-space: nowrap;
-  }
-  .services-header {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    margin-bottom: 5rem;
-    position: relative;
-    z-index: 1;
-  }
-  .services-eyebrow {
-    font-size: 0.68rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--earth-light);
-    margin-bottom: 1.2rem;
-  }
-  .services-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(3rem, 5vw, 5rem);
-    font-weight: 400;
-    line-height: 1;
-    color: var(--cream);
-  }
-  .services-title em { font-style: italic; color: rgba(247,243,238,0.3); }
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1px;
-    background: rgba(255,255,255,0.05);
-    position: relative;
-    z-index: 1;
-  }
-  .service-card {
-    background: var(--ink);
-    padding: 3.5rem;
-    position: relative;
-    overflow: hidden;
-    transition: background 0.3s;
-  }
-  .service-card:hover { background: #222220; }
-  .service-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 8rem;
-    font-weight: 400;
-    font-style: italic;
-    color: rgba(255,255,255,0.03);
-    position: absolute;
-    top: 0; right: 1.5rem;
-    line-height: 1;
-    transition: color 0.3s;
-  }
-  .service-card:hover .service-num { color: rgba(196,168,130,0.06); }
-  .service-icon-wrap {
-    width: 50px; height: 50px;
-    border: 1px solid rgba(196,168,130,0.2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 2rem;
-    font-size: 1.3rem;
-  }
-  .service-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.6rem;
-    font-weight: 400;
-    color: var(--cream);
-    margin-bottom: 1rem;
-    line-height: 1.2;
-  }
-  .service-desc {
-    font-size: 0.8rem;
-    line-height: 1.9;
-    color: rgba(138,132,120,0.9);
-    margin-bottom: 2rem;
-  }
-  .service-price {
-    font-size: 0.68rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--earth-light);
-  }
-  .service-price span {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.4rem;
-    font-weight: 400;
-    font-style: italic;
-    margin-left: 0.4rem;
-    color: var(--cream);
-  }
+    /* Ticker row */
+    .ticker-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-bottom: 44px;
+    }
+    .ticker-chip {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0) 100%), var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 16px 20px;
+      display: flex; flex-direction: column; gap: 4px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .ticker-chip:hover {
+      border-color: var(--border-glow);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(6, 182, 212, 0.05);
+    }
+    .ticker-chip .sym {
+      font-family: var(--mono);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--accent);
+    }
+    .ticker-chip .label {
+      font-size: 10px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+    }
 
-  /* TESTIMONIALS */
-  .testimonials {
-    padding: 9rem 5rem;
-    background: var(--warm);
-  }
-  .test-header {
-    text-align: center;
-    margin-bottom: 5rem;
-  }
-  .test-eyebrow {
-    font-size: 0.68rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--earth);
-    margin-bottom: 1.5rem;
-  }
-  .test-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2.5rem, 4vw, 4rem);
-    font-weight: 400;
-    line-height: 1.1;
-  }
-  .test-title em { font-style: italic; color: var(--forest); }
-  .test-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-  }
-  .test-card {
-    background: var(--cream);
-    border: 1px solid rgba(139,111,71,0.1);
-    padding: 2.5rem;
-    position: relative;
-    transition: transform 0.3s, box-shadow 0.3s;
-  }
-  .test-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 20px 60px rgba(44,62,45,0.08);
-  }
-  .test-quote-mark {
-    font-family: 'Playfair Display', serif;
-    font-size: 5rem;
-    font-weight: 700;
-    font-style: italic;
-    color: rgba(44,62,45,0.06);
-    line-height: 0.7;
-    margin-bottom: 1.5rem;
-    display: block;
-  }
-  .test-text {
-    font-size: 0.85rem;
-    line-height: 1.9;
-    color: var(--muted);
-    margin-bottom: 2rem;
-    font-style: italic;
-  }
-  .test-divider {
-    width: 30px;
-    height: 1px;
-    background: var(--earth-light);
-    margin-bottom: 1.5rem;
-  }
-  .test-name {
-    font-size: 0.82rem;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    color: var(--ink);
-    margin-bottom: 0.3rem;
-  }
-  .test-role {
-    font-size: 0.65rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
-  .test-stars {
-    position: absolute;
-    top: 2.5rem;
-    right: 2.5rem;
-    font-size: 0.65rem;
-    color: var(--earth);
-    letter-spacing: 0.1em;
-  }
+    /* Verdict banner — the page's signature */
+    .verdict-banner {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.01) 0%, rgba(255, 255, 255, 0) 100%), var(--surface);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    }
+    .verdict-cell {
+      padding: 28px;
+      border-right: 1px solid var(--border);
+    }
+    .verdict-cell:last-child { border-right: none; }
+    .verdict-cell .vc-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+    .verdict-cell .vc-value {
+      font-family: var(--display);
+      font-size: 30px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+    .verdict-cell .vc-sub {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+    .verdict-cell.highlight { background: rgba(255, 255, 255, 0.015); }
+    .red { color: var(--accent2); text-shadow: 0 0 15px rgba(244,63,94,0.25); }
+    .cyan { color: var(--accent); text-shadow: 0 0 15px rgba(6,182,212,0.25); }
+    .gold { color: var(--accent3); text-shadow: 0 0 15px rgba(245,158,11,0.25); }
 
-  /* CTA */
-  .cta {
-    padding: 9rem 5rem;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 6rem;
-    align-items: center;
-    position: relative;
-  }
-  .cta::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at 20% 50%, rgba(44,62,45,0.04) 0%, transparent 60%);
-  }
-  .cta-left { position: relative; z-index: 1; }
-  .cta-eyebrow {
-    font-size: 0.68rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--earth);
-    margin-bottom: 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-  }
-  .cta-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--earth); }
-  .cta-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2.8rem, 5vw, 5rem);
-    font-weight: 400;
-    line-height: 1.05;
-    margin-bottom: 2rem;
-  }
-  .cta-title em { font-style: italic; color: var(--forest); }
-  .cta-text {
-    font-size: 0.85rem;
-    line-height: 2;
-    color: var(--muted);
-    margin-bottom: 3rem;
-  }
-  .cta-actions { display: flex; align-items: center; gap: 2rem; }
-  .cta-right {
-    position: relative;
-    z-index: 1;
-    background: var(--forest);
-    padding: 4rem;
-  }
-  .form-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.6rem;
-    font-weight: 400;
-    font-style: italic;
-    color: var(--cream);
-    margin-bottom: 2.5rem;
-  }
-  .form-group {
-    margin-bottom: 1.5rem;
-  }
-  .form-label {
-    font-size: 0.62rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: rgba(247,243,238,0.4);
-    display: block;
-    margin-bottom: 0.6rem;
-  }
-  .form-input {
-    width: 100%;
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.1);
-    color: var(--cream);
-    font-family: 'Syne', sans-serif;
-    font-size: 0.85rem;
-    padding: 0.9rem 1.1rem;
-    outline: none;
-    transition: border-color 0.2s;
-  }
-  .form-input::placeholder { color: rgba(247,243,238,0.2); }
-  .form-input:focus { border-color: rgba(196,168,130,0.4); }
-  .form-select {
-    width: 100%;
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.1);
-    color: var(--cream);
-    font-family: 'Syne', sans-serif;
-    font-size: 0.85rem;
-    padding: 0.9rem 1.1rem;
-    outline: none;
-    appearance: none;
-    cursor: pointer;
-  }
-  .form-select option { background: var(--forest); }
-  .btn-submit {
-    width: 100%;
-    background: var(--earth);
-    color: var(--cream);
-    border: none;
-    font-family: 'Syne', sans-serif;
-    font-size: 0.78rem;
-    font-weight: 500;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    padding: 1.2rem;
-    cursor: pointer;
-    margin-top: 0.5rem;
-    transition: background 0.2s;
-  }
-  .btn-submit:hover { background: var(--earth-light); }
-  .form-note {
-    font-size: 0.65rem;
-    color: rgba(247,243,238,0.3);
-    text-align: center;
-    margin-top: 1.2rem;
-    letter-spacing: 0.05em;
-  }
+    /* ── SECTION STRUCTURE ──────────────────────────── */
+    section {
+      padding: 64px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    section:last-of-type { border-bottom: none; }
 
-  /* FOOTER */
-  footer {
-    background: var(--ink);
-    padding: 3.5rem 5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-top: 1px solid rgba(255,255,255,0.05);
-  }
-  .footer-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 1rem;
-    font-weight: 400;
-    font-style: italic;
-    color: var(--cream);
-  }
-  .footer-links {
-    display: flex;
-    gap: 2rem;
-    list-style: none;
-  }
-  .footer-links a {
-    color: rgba(138,132,120,0.6);
-    text-decoration: none;
-    font-size: 0.68rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    transition: color 0.2s;
-  }
-  .footer-links a:hover { color: var(--cream); }
-  .footer-copy {
-    font-size: 0.62rem;
-    color: rgba(138,132,120,0.4);
-    letter-spacing: 0.08em;
-  }
+    .section-head {
+      display: flex; align-items: baseline; gap: 16px;
+      margin-bottom: 36px;
+    }
+    .section-num {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      min-width: 24px;
+      font-weight: 600;
+    }
+    .section-title {
+      font-family: var(--display);
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
 
-  /* ANIMATIONS */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(25px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-  @keyframes marquee {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-  }
-  @keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.3; }
-  }
-  .reveal {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.9s ease, transform 0.9s ease;
-  }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
-  .reveal-delay {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.9s 0.2s ease, transform 0.9s 0.2s ease;
-  }
-  .reveal-delay.visible { opacity: 1; transform: translateY(0); }
-</style>
+    p {
+      color: #94a3b8;
+      line-height: 1.8;
+      margin-bottom: 20px;
+      max-width: 720px;
+      font-size: 15px;
+    }
+    p:last-child { margin-bottom: 0; }
+
+    strong { color: var(--text); font-weight: 600; }
+
+    /* ── DATA CARDS ─────────────────────────────────── */
+    .data-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin: 32px 0;
+    }
+    .data-card {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0) 100%), var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+    .data-card:hover {
+      border-color: var(--border-glow);
+      transform: translateY(-1px);
+    }
+    .data-card .dc-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+    .data-card .dc-value {
+      font-family: var(--display);
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+    .data-card .dc-sub {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    /* ── MULTIPLES TABLE ─────────────────────────────── */
+    .table-wrapper {
+      overflow-x: auto;
+      margin: 32px 0;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+    .multiples-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--body);
+      font-size: 14px;
+    }
+    .multiples-table th {
+      text-align: left;
+      padding: 14px 20px;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+      font-family: var(--mono);
+      font-weight: 600;
+    }
+    .multiples-table td {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+      background: var(--surface);
+    }
+    .multiples-table tr:last-child td { border-bottom: none; }
+    .multiples-table tr:hover td { background: var(--surface2); }
+    .multiples-table .highlight-row td { color: var(--accent); font-weight: 600; }
+    .multiples-table td:nth-child(2), .multiples-table td:nth-child(3) {
+      font-family: var(--mono);
+    }
+    .multiples-table .tag {
+      display: inline-block;
+      font-size: 10px;
+      padding: 3px 10px;
+      border-radius: 6px;
+      letter-spacing: 0.04em;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .tag-high { background: var(--accent2-bg); color: var(--accent2); border: 1px solid var(--accent2-border); }
+    .tag-mid  { background: rgba(245, 158, 11, 0.08); color: var(--accent3); border: 1px solid rgba(245, 158, 11, 0.25); }
+    .tag-low  { background: rgba(6, 182, 212, 0.08);  color: var(--accent); border: 1px solid var(--accent-glow); }
+
+    /* ── INTERACTIVE CALCULATOR ──────────────────────── */
+    .calculator-layout {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 28px;
+      margin: 32px 0;
+    }
+
+    .calc-card {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0) 100%), var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+
+    .slider-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .slider-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .slider-header label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.01em;
+    }
+
+    .slider-header .bubble {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--accent);
+      font-family: var(--mono);
+      text-shadow: 0 0 10px rgba(6, 182, 212, 0.15);
+    }
+
+    input[type="range"] {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 6px;
+      background: var(--muted-dark);
+      border-radius: 999px;
+      outline: none;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 10px var(--accent-glow);
+      cursor: pointer;
+      border: 2px solid var(--bg);
+      transition: transform 0.1s ease, background-color 0.2s ease;
+    }
+
+    input[type="range"]::-webkit-slider-thumb:hover {
+      transform: scale(1.25);
+      background-color: #ffffff;
+    }
+
+    input[type="range"]::-moz-range-thumb {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 10px var(--accent-glow);
+      cursor: pointer;
+      border: 2px solid var(--bg);
+      transition: transform 0.1s ease, background-color 0.2s ease;
+    }
+    input[type="range"]::-moz-range-thumb:hover {
+      transform: scale(1.25);
+      background-color: #ffffff;
+    }
+
+    /* Output grids */
+    .calc-outputs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .calc-out-card {
+      background: rgba(255, 255, 255, 0.01);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 18px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .calc-out-card .label {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    .calc-out-card .val {
+      font-family: var(--display);
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .calc-out-card.status-up {
+      border-color: var(--success-border);
+      background: var(--success-bg);
+      box-shadow: 0 4px 20px var(--success-bg);
+    }
+    .calc-out-card.status-up .val {
+      color: var(--success);
+      text-shadow: 0 0 10px var(--success-glow);
+    }
+
+    .calc-out-card.status-down {
+      border-color: var(--accent2-border);
+      background: var(--accent2-bg);
+      box-shadow: 0 4px 20px var(--accent2-bg);
+    }
+    .calc-out-card.status-down .val {
+      color: var(--accent2);
+      text-shadow: 0 0 10px var(--accent2-glow);
+    }
+
+    /* ── CHART CONTAINER ────────────────────────────── */
+    .chart-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .chart-card {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0) 100%), var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    }
+    .chart-wrap {
+      position: relative;
+      height: 200px;
+      width: 100%;
+    }
+
+    /* Break-even table */
+    .breakeven-wrapper {
+      margin-top: 10px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+
+    .breakeven-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--mono);
+      font-size: 11px;
+    }
+
+    .breakeven-table th {
+      background: var(--surface2);
+      color: var(--muted);
+      text-align: left;
+      padding: 8px 12px;
+      text-transform: uppercase;
+      font-weight: 600;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .breakeven-table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+    }
+    .breakeven-table tr:last-child td { border-bottom: none; }
+    .breakeven-table tr.active-be-row td {
+      background: rgba(6, 182, 212, 0.04);
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    /* ── SYNERGY BLOCK ───────────────────────────────── */
+    .synergy-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 32px 0;
+    }
+    .synergy-card {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0) 100%), var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px 28px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    }
+    .synergy-card:hover {
+      border-color: var(--border-glow);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 40px rgba(6, 182, 212, 0.05);
+    }
+    .synergy-card .sc-head {
+      font-family: var(--display);
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      display: flex; align-items: center; gap: 10px;
+      color: var(--text);
+    }
+    .synergy-card .sc-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+    }
+    .synergy-card p { font-size: 13.5px; color: #94a3b8; }
+
+    /* ── ACCRETION BLOCK ─────────────────────────────── */
+    .accretion-card {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0) 100%), var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      margin: 32px 0;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    }
+    .acc-toggle-container {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 20px;
+    }
+    .acc-toggle-btn {
+      background: var(--muted-dark);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 8px 18px;
+      font-family: var(--mono);
+      font-size: 11px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 700;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .acc-toggle-btn.active {
+      background: var(--accent);
+      color: var(--bg);
+      border-color: var(--accent);
+      box-shadow: 0 0 15px var(--accent-glow);
+    }
+    .acc-grid {
+      display: flex;
+      flex-direction: column;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+    .acc-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface2);
+      transition: all 0.3s ease;
+    }
+    .acc-row:last-child { border-bottom: none; }
+    .acc-row .ar-label {
+      font-size: 13.5px;
+      color: #94a3b8;
+    }
+    .acc-row .ar-value {
+      font-family: var(--mono);
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .acc-row.highlight-metric {
+      background: rgba(6, 182, 212, 0.03);
+    }
+    .acc-row.highlight-metric .ar-value {
+      color: var(--accent);
+      font-weight: 700;
+      text-shadow: 0 0 10px rgba(6, 182, 212, 0.1);
+    }
+
+    /* ── INTERACTIVE TIMELINE ────────────────────────── */
+    .timeline {
+      position: relative;
+      padding-left: 32px;
+      margin: 32px 0;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 7px; top: 8px; bottom: 8px;
+      width: 1px;
+      background: var(--border);
+      box-shadow: 0 0 8px var(--accent-glow);
+    }
+    .tl-item {
+      position: relative;
+      margin-bottom: 24px;
+      cursor: pointer;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.01) 0%, rgba(255, 255, 255, 0) 100%), var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 20px 24px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+    .tl-item:hover {
+      border-color: var(--border-glow);
+      transform: translateX(4px);
+    }
+    .tl-item::before {
+      content: '';
+      position: absolute;
+      left: -31px; top: 26px;
+      width: 9px; height: 9px;
+      border-radius: 50%;
+      background: var(--muted);
+      border: 2px solid var(--bg);
+      transition: all 0.3s ease;
+    }
+    .tl-item.active::before {
+      background: var(--accent);
+      box-shadow: 0 0 10px var(--accent);
+    }
+    .tl-item.active {
+      border-color: var(--accent-glow);
+      background: var(--surface2);
+    }
+    .tl-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .tl-date {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      font-weight: 700;
+    }
+    .tl-summary {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      margin-top: 4px;
+      letter-spacing: -0.01em;
+    }
+    .tl-icon {
+      font-size: 12px;
+      color: var(--muted);
+      transition: transform 0.3s ease;
+    }
+    .tl-item.active .tl-icon {
+      transform: rotate(180deg);
+      color: var(--accent);
+    }
+    .tl-content {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, margin-top 0.3s ease;
+    }
+    .tl-item.active .tl-content {
+      max-height: 140px;
+      opacity: 1;
+      margin-top: 14px;
+      border-top: 1px solid var(--border);
+      padding-top: 14px;
+    }
+    .tl-text {
+      font-size: 13.5px;
+      color: #94a3b8;
+      line-height: 1.65;
+    }
+
+    /* ── VERDICT SECTION ─────────────────────────────── */
+    .verdict-final {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0) 100%), var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 36px 40px;
+      margin: 32px 0;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    }
+    .verdict-final .vf-call {
+      font-family: var(--display);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent3);
+      margin-bottom: 12px;
+    }
+    .verdict-final .vf-head {
+      font-family: var(--display);
+      font-size: 30px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 18px;
+      line-height: 1.15;
+      background: linear-gradient(135deg, #ffffff 40%, var(--accent3) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .verdict-final p { max-width: 100%; font-size: 15px; }
+
+    /* ── PLAIN ENGLISH ───────────────────────────────── */
+    .plain-box {
+      background: var(--surface2);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      padding: 24px 28px;
+      margin: 24px 0;
+    }
+    .plain-box .pb-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+    .plain-box p {
+      font-size: 14.5px;
+      color: #cbd5e1;
+      max-width: 100%;
+    }
+
+    /* ── FOOTER ──────────────────────────────────────── */
+    footer {
+      padding: 44px 0;
+      border-top: 1px solid var(--border);
+    }
+    .footer-inner {
+      max-width: 860px; margin: 0 auto; padding: 0 24px;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 12px;
+    }
+    .footer-left {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+    .footer-left a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .footer-right {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    /* ── RESPONSIVENESS ─────────────────────────────── */
+    @media (max-width: 860px) {
+      .ticker-row { grid-template-columns: 1fr 1fr; }
+      .calculator-layout { grid-template-columns: 1fr; }
+      .data-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 600px) {
+      .container { padding: 0 12px; }
+      .hero { padding: 48px 0; }
+      .deal-title { font-size: 32px; }
+      .ticker-row { gap: 10px; margin-bottom: 24px; }
+      .ticker-chip { padding: 10px 12px; }
+      .ticker-chip .sym { font-size: 14px; }
+      
+      .verdict-banner { grid-template-columns: 1fr; }
+      .verdict-cell { border-right: none; border-bottom: 1px solid var(--border); padding: 18px 20px; }
+      .verdict-cell:last-child { border-bottom: none; }
+      
+      .synergy-grid { grid-template-columns: 1fr; gap: 12px; margin: 20px 0; }
+      .synergy-card { padding: 18px 20px; }
+      .data-grid { grid-template-columns: 1fr; margin: 20px 0; }
+      .data-card { padding: 16px; }
+      
+      .calc-card { padding: 20px; gap: 16px; }
+      .chart-card { padding: 12px 14px !important; height: 200px !important; }
+      .chart-wrap { height: 120px !important; }
+      
+      .accretion-card { padding: 16px; margin: 20px 0; }
+      .acc-toggle-container { flex-direction: column; gap: 8px; align-items: stretch; }
+      .acc-toggle-btn { margin-left: 0 !important; text-align: center; padding: 6px 12px; }
+      .acc-row { padding: 12px 16px; }
+      
+      .timeline { padding-left: 20px; margin: 20px 0; }
+      .timeline::before { left: 3px; }
+      .tl-item { padding: 12px 16px; margin-bottom: 16px; }
+      .tl-item::before { left: -22px; top: 22px; }
+      .tl-item.active .tl-content { max-height: 200px; }
+      
+      .verdict-final { padding: 24px; margin: 20px 0; }
+      .verdict-final .vf-head { font-size: 22px; }
+      .plain-box { padding: 16px 20px; margin: 16px 0; }
+      
+      footer { padding: 24px 0; }
+      .footer-inner { flex-direction: column; text-align: center; gap: 16px; }
+    }
+
+    @media (max-width: 480px) {
+      .nav-tag { display: none; }
+      .multiples-table th, .multiples-table td { padding: 10px 12px; font-size: 12px; }
+      .breakeven-table th, .breakeven-table td { padding: 8px 10px; font-size: 10px; }
+    }
+  </style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav>
-  <div class="nav-logo">
-    <span class="nav-logo-name">Priya Sharma</span>
-    <span class="nav-logo-sub">Personal Trainer & Wellness Coach</span>
+  <div class="inner">
+    <a class="nav-brand" href="#">Velour <span>Media</span> · Finance Portfolio</a>
+    <span class="nav-tag">M&A Deal Teardown</span>
   </div>
-  <ul class="nav-links">
-    <li><a href="#">About</a></li>
-    <li><a href="#">Services</a></li>
-    <li><a href="#">Testimonials</a></li>
-    <li><a href="#">Contact</a></li>
-  </ul>
-  <a href="#" class="nav-cta">Book a Call</a>
 </nav>
 
 <!-- HERO -->
-<section class="hero">
-  <div class="hero-left">
-    <div class="hero-tag">
-      <div class="tag-line"></div>
-      <span class="tag-text">Delhi NCR · Online · In-Person</span>
-    </div>
-    <h1 class="hero-title">
-      Your body<br>
-      is <em>capable</em><br>
-      of <span class="outline-text">more.</span>
+<div class="container">
+  <div class="hero">
+    <p class="deal-eyebrow">Jan 2022 · Announced &nbsp;/&nbsp; Oct 2023 · Closed</p>
+    <h1 class="deal-title">
+      Microsoft<span class="x-mark">×</span>Activision
     </h1>
-    <p class="hero-desc">I help busy professionals and women in Delhi build bodies they're proud of — through smart training, sustainable nutrition, and coaching that actually fits your life.</p>
-    <div class="hero-actions">
-      <a href="#" class="btn-forest">Book Free Consultation</a>
-      <a href="#" class="btn-text">See My Work</a>
-    </div>
-    <div class="hero-floating-stat">
-      <div>
-        <div class="f-stat-num">340+</div>
-        <div class="f-stat-label">Clients Transformed</div>
+    <p class="deal-subtitle">NASDAQ: MSFT &nbsp;·&nbsp; NASDAQ: ATVI &nbsp;·&nbsp; All-Cash Transaction &nbsp;·&nbsp; $68.7 Billion</p>
+
+    <div class="ticker-row">
+      <div class="ticker-chip">
+        <span class="sym">$68.7B</span>
+        <span class="label">Enterprise Value</span>
       </div>
-      <div>
-        <div class="f-stat-num">7yr</div>
-        <div class="f-stat-label">Experience</div>
+      <div class="ticker-chip">
+        <span class="sym">$95.00</span>
+        <span class="label">Offer Price / Share</span>
       </div>
-      <div>
-        <div class="f-stat-num">4.9★</div>
-        <div class="f-stat-label">Google Reviews</div>
+      <div class="ticker-chip">
+        <span class="sym">47%</span>
+        <span class="label">Acquisition Premium</span>
       </div>
-    </div>
-  </div>
-  <div class="hero-right">
-    <div class="hero-right-inner">
-      <span class="hero-bg-letter">P</span>
-      <div class="hero-right-overlay"></div>
-      <span class="hero-right-tag">Certified Coach · Delhi</span>
-      <div class="hero-pill">
-        <span class="pill-dot"></span>
-        <span class="pill-text">Currently Accepting New Clients</span>
+      <div class="ticker-chip">
+        <span class="sym">21 months</span>
+        <span class="label">Announce → Close</span>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- MARQUEE -->
-<div class="marquee">
-  <div class="marquee-track">
-    <span class="marquee-item"><span class="leaf">✦</span> Fat Loss</span>
-    <span class="marquee-item"><span class="leaf">✦</span> Strength Training</span>
-    <span class="marquee-item"><span class="leaf">✦</span> Postpartum Fitness</span>
-    <span class="marquee-item"><span class="leaf">✦</span> Nutrition Coaching</span>
-    <span class="marquee-item"><span class="leaf">✦</span> Online Programs</span>
-    <span class="marquee-item"><span class="leaf">✦</span> Lifestyle Transformation</span>
-    <span class="marquee-item"><span class="leaf">✦</span> Fat Loss</span>
-    <span class="marquee-item"><span class="leaf">✦</span> Strength Training</span>
-    <span class="marquee-item"><span class="leaf">✦</span> Postpartum Fitness</span>
-    <span class="marquee-item"><span class="leaf">✦</span> Nutrition Coaching</span>
-    <span class="marquee-item"><span class="leaf">✦</span> Online Programs</span>
-    <span class="marquee-item"><span class="leaf">✦</span> Lifestyle Transformation</span>
+    <div class="verdict-banner">
+      <div class="verdict-cell">
+        <div class="vc-label">EV / Revenue</div>
+        <div class="vc-value cyan">7.8×</div>
+        <div class="vc-sub">vs. 2021 revenue of $8.8B</div>
+      </div>
+      <div class="verdict-cell highlight">
+        <div class="vc-label">EV / EBITDA</div>
+        <div class="vc-value red">18.2×</div>
+        <div class="vc-sub">sector avg ~14–16× at close</div>
+      </div>
+      <div class="verdict-cell">
+        <div class="vc-label">Analyst Verdict</div>
+        <div class="vc-value gold">OVERPAID</div>
+        <div class="vc-sub">strategically rational</div>
+      </div>
+    </div>
   </div>
-</div>
 
-<!-- ABOUT -->
-<section class="about">
-  <div class="about-left reveal">
-    <div class="about-main-box">
-      <span class="about-letter">P</span>
+  <!-- SECTION 1: STRATEGIC RATIONALE -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">01</span>
+      <h2 class="section-title">Strategic Rationale</h2>
     </div>
-    <div class="about-accent-box">
-      <div class="accent-num">340+</div>
-      <div class="accent-label">Lives Changed</div>
-    </div>
-    <div class="about-dot-row">
-      <div class="about-dot"></div>
-      <div class="about-dot"></div>
-      <div class="about-dot"></div>
-      <div class="about-dot"></div>
-      <div class="about-dot"></div>
-    </div>
-  </div>
-  <div class="about-right reveal-delay">
-    <p class="about-eyebrow">About Me</p>
-    <h2 class="about-title">I'm not your<br>average <em>trainer.</em></h2>
-    <p class="about-text">I spent 3 years as a corporate professional before becoming a certified trainer. I know what it means to have zero time, high stress, and a body that's running on empty. That experience shapes every program I build.</p>
-    <p class="about-text">My approach is rooted in science — not trends. No crash diets. No unsustainable 2-a-days. Just smart, progressive work that compounds over time and teaches you to sustain results for life.</p>
-    <div class="cert-row">
-      <span class="cert-tag">NASM Certified PT</span>
-      <span class="cert-tag">Precision Nutrition L1</span>
-      <span class="cert-tag">Pre/Postnatal Coach</span>
-      <span class="cert-tag">Corrective Exercise</span>
-    </div>
-    <a href="#" class="btn-forest">Read My Full Story</a>
-  </div>
-</section>
+    <p>
+      Microsoft paid $68.7 billion to acquire Activision Blizzard in January 2022 — the largest acquisition in the company's history and the biggest deal in gaming to date. The strategic bet was straightforward: content is the moat in the cloud gaming era. Microsoft's Game Pass subscription service needed a pipeline of must-play titles to compete with Sony's PlayStation and attract tens of millions of recurring subscribers.
+    </p>
+    <p>
+      Activision brought <strong>Call of Duty</strong>, <strong>World of Warcraft</strong>, <strong>Diablo</strong>, <strong>Overwatch</strong>, and <strong>Candy Crush</strong> — some of the most played franchises on the planet, spanning console, PC, and mobile. In one transaction, Microsoft leapfrogged years of organic development and became the world's <strong>third-largest gaming company by revenue</strong>, behind only Tencent and Sony.
+    </p>
+    <p>
+      The timing was deliberate. Activision's stock was trading near multi-year lows following a sexual harassment scandal that tanked the share price from $105 to ~$65. Microsoft announced at the bottom — paying $95 per share represented a 47% premium to the pre-announcement price but was still well below Activision's prior peak.
+    </p>
+  </section>
 
-<!-- SERVICES -->
-<section class="services">
-  <div class="services-header reveal">
-    <div>
-      <p class="services-eyebrow">What I Offer</p>
-      <h2 class="services-title">Services &amp; <em>Programs</em></h2>
+  <!-- SECTION 2: DEAL STRUCTURE -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Deal Structure, Multiples &amp; Historical Highs</h2>
     </div>
-  </div>
-  <div class="services-grid reveal">
-    <div class="service-card">
-      <span class="service-num">01</span>
-      <div class="service-icon-wrap">💪</div>
-      <h3 class="service-name">1-on-1 Personal Training</h3>
-      <p class="service-desc">Fully personalised sessions at your gym or home in Delhi NCR. Each session is programmed specifically for your body, your goals, and your current fitness level. No cookie-cutter routines.</p>
-      <div class="service-price">Starting at <span>₹2,500/session</span></div>
-    </div>
-    <div class="service-card">
-      <span class="service-num">02</span>
-      <div class="service-icon-wrap">📱</div>
-      <h3 class="service-name">Online Coaching</h3>
-      <p class="service-desc">Get a fully custom program, weekly check-ins, nutrition guidance, and WhatsApp support — wherever you are. My most popular offer for busy professionals who travel or work from home.</p>
-      <div class="service-price">Starting at <span>₹8,000/month</span></div>
-    </div>
-    <div class="service-card">
-      <span class="service-num">03</span>
-      <div class="service-icon-wrap">🥗</div>
-      <h3 class="service-name">Nutrition Coaching</h3>
-      <p class="service-desc">Macro-based meal planning built around Indian food. No bland chicken and broccoli — sustainable nutrition that actually works with your culture, your schedule, and your taste.</p>
-      <div class="service-price">Starting at <span>₹5,000/month</span></div>
-    </div>
-    <div class="service-card">
-      <span class="service-num">04</span>
-      <div class="service-icon-wrap">🌿</div>
-      <h3 class="service-name">12-Week Transformation</h3>
-      <p class="service-desc">My signature program — training, nutrition, mindset, and accountability all in one. This is for women who are done with quick fixes and want a permanent change. Results guaranteed or money back.</p>
-      <div class="service-price">Starting at <span>₹35,000</span></div>
-    </div>
-  </div>
-</section>
+    <p>
+      The deal was structured as an <strong>all-cash acquisition</strong> at $95.00 per share. Funded primarily from Microsoft's cash reserves and supplementary debt issuance, no stock was issued. This avoided share dilution, but forced Microsoft to absorb significant financing costs and interest opportunities.
+    </p>
+    <p>
+      <strong>Distressed Asset vs. 52-Week High:</strong> While the $95.00 offer price represented a 47% acquisition premium over the distressed pre-announcement price, it represented a <strong>9.1% discount</strong> to Activision's historical 52-week high of <strong>$104.53</strong> reached in early 2021. Rather than paying a record premium for growth, Microsoft opportunistically acquired Activision at a cyclical trough.
+    </p>
 
-<!-- TESTIMONIALS -->
-<section class="testimonials">
-  <div class="test-header reveal">
-    <p class="test-eyebrow">Client Stories</p>
-    <h2 class="test-title">Results that <em>speak.</em></h2>
-  </div>
-  <div class="test-grid reveal">
-    <div class="test-card">
-      <span class="test-stars">★★★★★</span>
-      <span class="test-quote-mark">"</span>
-      <p class="test-text">Priya completely changed my relationship with fitness. I'd tried gyms before and always quit. With her I've been consistent for 8 months. Lost 11 kgs and feel stronger than I did in my 20s.</p>
-      <div class="test-divider"></div>
-      <p class="test-name">Ritu Agarwal</p>
-      <p class="test-role">Marketing Manager, Gurgaon</p>
+    <div class="data-grid">
+      <div class="data-card">
+        <div class="dc-label">Deal Type</div>
+        <div class="dc-value cyan" style="font-size:20px;">All-Cash</div>
+        <div class="dc-sub">No share dilution</div>
+      </div>
+      <div class="data-card">
+        <div class="dc-label">Offer Price / Share</div>
+        <div class="dc-value">$95.00</div>
+        <div class="dc-sub">Distressed bottom</div>
+      </div>
+      <div class="data-card">
+        <div class="dc-label">Historical High</div>
+        <div class="dc-value">$104.53</div>
+        <div class="dc-sub">Implied 9.1% discount</div>
+      </div>
+      <div class="data-card">
+        <div class="dc-label">Net Cash (ATVI)</div>
+        <div class="dc-value">$5.8B</div>
+        <div class="dc-sub">Absorbed cash bridge</div>
+      </div>
     </div>
-    <div class="test-card">
-      <span class="test-stars">★★★★★</span>
-      <span class="test-quote-mark">"</span>
-      <p class="test-text">The online coaching is exceptional. She's available on WhatsApp, adjusts my plan based on how my week is going, and never makes me feel guilty for missing a session. Real-life coaching for real life.</p>
-      <div class="test-divider"></div>
-      <p class="test-name">Ananya Kapoor</p>
-      <p class="test-role">Software Engineer, Remote</p>
-    </div>
-    <div class="test-card">
-      <span class="test-stars">★★★★★</span>
-      <span class="test-quote-mark">"</span>
-      <p class="test-text">I came to Priya 4 months postpartum, feeling lost in my own body. She was patient, knowledgeable, and incredibly encouraging. I'm now fitter than pre-pregnancy. Cannot recommend enough.</p>
-      <div class="test-divider"></div>
-      <p class="test-name">Deepika Mehta</p>
-      <p class="test-role">New Mother, South Delhi</p>
-    </div>
-  </div>
-</section>
 
-<!-- CTA / CONTACT -->
-<section class="cta">
-  <div class="cta-left reveal">
-    <p class="cta-eyebrow">Let's Talk</p>
-    <h2 class="cta-title">Ready to start<br>your <em>journey?</em></h2>
-    <p class="cta-text">Book a free 20-minute discovery call. We'll talk about your goals, your lifestyle, and whether we're a good fit. No pressure, no pitch — just an honest conversation.</p>
-    <div class="cta-actions">
-      <a href="#" class="btn-forest">Book Free Call</a>
+    <div class="table-wrapper">
+      <table class="multiples-table">
+        <thead>
+          <tr>
+            <th>Multiple</th>
+            <th>Paid</th>
+            <th>Gaming Sector Avg</th>
+            <th>Assessment</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="highlight-row">
+            <td>EV / Revenue</td>
+            <td>7.8×</td>
+            <td>5–7×</td>
+            <td><span class="tag tag-high">Above market</span></td>
+          </tr>
+          <tr>
+            <td>EV / EBITDA</td>
+            <td>18.2×</td>
+            <td>14–16×</td>
+            <td><span class="tag tag-high">Stretched</span></td>
+          </tr>
+          <tr>
+            <td>P/E (approx)</td>
+            <td>25.9×</td>
+            <td>20–24×</td>
+            <td><span class="tag tag-mid">Slight premium</span></td>
+          </tr>
+          <tr>
+            <td>Precedent transactions max EV</td>
+            <td>—</td>
+            <td>Up to $90.4B</td>
+            <td><span class="tag tag-low">Within range</span></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-  </div>
-  <div class="cta-right reveal-delay">
-    <p class="form-title">Send a message</p>
-    <div class="form-group">
-      <label class="form-label">Your Name</label>
-      <input type="text" class="form-input" placeholder="Sneha Gupta">
+  </section>
+
+  <!-- INTERACTIVE VALUE MODELER & WATERFALL -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">ROI</span>
+      <h2 class="section-title">Valuation spectrum &amp; Synergy Model</h2>
     </div>
-    <div class="form-group">
-      <label class="form-label">WhatsApp Number</label>
-      <input type="text" class="form-input" placeholder="+91 98765 43210">
+    <p style="margin-bottom: 24px;">
+      Goldman Sachs M&A valuation modeling. Adjust synergies, user additions, and discount rates to recalculate the <strong>Synergy NPV</strong>, <strong>Net Value Created</strong>, <strong>Implied Deal IRR</strong>, and the <strong>Pro Forma Segment ROIC</strong>.
+    </p>
+
+    <div class="calculator-layout">
+      <!-- Sliders Column -->
+      <div class="calc-card">
+        
+        <div class="slider-group">
+          <div class="slider-header">
+            <label for="cost-synergies">Annual Cost Synergies</label>
+            <span class="bubble" id="val-cost-synergies">$500M</span>
+          </div>
+          <input type="range" id="cost-synergies" min="0" max="1000" value="500" step="10">
+        </div>
+
+        <div class="slider-group">
+          <div class="slider-header">
+            <label for="gp-subs">Monthly Game Pass Subs Added</label>
+            <span class="bubble" id="val-gp-subs">3.0M</span>
+          </div>
+          <input type="range" id="gp-subs" min="0" max="10" value="3.0" step="0.1">
+        </div>
+
+        <div class="slider-group">
+          <div class="slider-header">
+            <label for="gp-arpu">Monthly Game Pass ARPU</label>
+            <span class="bubble" id="val-gp-arpu">$15.00</span>
+          </div>
+          <input type="range" id="gp-arpu" min="10" max="20" value="15.0" step="0.5">
+        </div>
+
+        <div class="slider-group">
+          <div class="slider-header">
+            <label for="wacc">Discount Rate (WACC)</label>
+            <span class="bubble" id="val-wacc">8.5%</span>
+          </div>
+          <input type="range" id="wacc" min="6.0" max="12.0" value="8.5" step="0.1">
+        </div>
+
+        <hr style="border: 0; border-top: 1px solid var(--border); margin: 8px 0;">
+
+        <div class="calc-outputs">
+          <div class="calc-out-card">
+            <span class="label">Synergy NPV</span>
+            <span class="val" id="out-syn-npv">$0.0B</span>
+          </div>
+          <div class="calc-out-card" id="card-roic">
+            <span class="label">Pro Forma Segment ROIC</span>
+            <span class="val" id="out-roic">0.0%</span>
+          </div>
+          <div class="calc-out-card" id="card-net-value">
+            <span class="label">Net Value Created</span>
+            <span class="val" id="out-net-value">$0.0B</span>
+          </div>
+          <div class="calc-out-card" id="card-irr">
+            <span class="label">Implied Deal IRR</span>
+            <span class="val" id="out-irr">0.0%</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Chart Column -->
+      <div class="chart-panel">
+        
+        <!-- Waterfall Card -->
+        <div class="chart-card" style="height: 220px; padding: 18px 24px;">
+          <h3 style="font-family: var(--display); font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px;">
+            Value Creation Waterfall ($B)
+          </h3>
+          <div class="chart-wrap" style="height: 140px;">
+            <canvas id="waterfallChart"></canvas>
+          </div>
+        </div>
+
+        <!-- Football Field Card -->
+        <div class="chart-card" style="height: 220px; padding: 18px 24px;">
+          <h3 style="font-family: var(--display); font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px;">
+            Goldman Sachs TMT Valuation Ranges ($/Share)
+          </h3>
+          <div class="chart-wrap" style="height: 140px;">
+            <canvas id="footballFieldChart"></canvas>
+          </div>
+        </div>
+
+        <!-- Break-even matrix -->
+        <div class="breakeven-wrapper">
+          <table class="breakeven-table" id="breakeven-table"></table>
+        </div>
+
+      </div>
     </div>
-    <div class="form-group">
-      <label class="form-label">I'm interested in</label>
-      <select class="form-select">
-        <option>1-on-1 Personal Training</option>
-        <option>Online Coaching</option>
-        <option>Nutrition Coaching</option>
-        <option>12-Week Transformation</option>
-      </select>
+  </section>
+
+  <!-- SECTION 3: SYNERGY ANALYSIS -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Synergy Analysis</h2>
     </div>
-    <button class="btn-submit">Send Message →</button>
-    <p class="form-note">I respond within 24 hours · No spam ever</p>
-  </div>
-</section>
+    <p>
+      Microsoft did not publish explicit synergy targets — a notable departure from typical M&A communication. The strategic value was framed in terms of content library and platform scale rather than quantified cost savings or revenue uplift. Post-merger data, however, allows us to assess what synergies actually materialized.
+    </p>
+
+    <div class="synergy-grid">
+      <div class="synergy-card">
+        <div class="sc-head">
+          <span class="sc-dot" style="background: var(--accent);"></span>
+          Revenue Synergies
+        </div>
+        <p>Game Pass subscriber acceleration from Activision titles. Xbox content &amp; services revenue grew <strong>61% YoY</strong> in Q1 FY2024, with 55 points of that growth directly attributed to the Activision acquisition. Without the deal, gaming revenue would have been essentially flat.</p>
+      </div>
+      <div class="synergy-card">
+        <div class="sc-head">
+          <span class="sc-dot" style="background: var(--accent3);"></span>
+          Cost Synergies
+        </div>
+        <p>Microsoft laid off <strong>1,900 employees</strong> (~8% of its gaming division) post-merger, reducing redundant roles. Management expense ratios and selling expense ratios both declined post-merger — average decline in management expenses rose from 0.054% to 0.405%.</p>
+      </div>
+      <div class="synergy-card">
+        <div class="sc-head">
+          <span class="sc-dot" style="background: var(--accent2);"></span>
+          Financial Synergies
+        </div>
+        <p>No significant reduction in financing costs or tax burden — Microsoft's borrowing costs increased from the debt raised to fund the deal. Cash utilization improved as Activision's $5.8B net cash position was absorbed, but this is a one-time benefit, not recurring synergy.</p>
+      </div>
+      <div class="synergy-card">
+        <div class="sc-head">
+          <span class="sc-dot" style="background: #8891a4;"></span>
+          Strategic Synergies
+        </div>
+        <p>Accelerated Microsoft's transition to a subscription gaming model. Activision titles strengthen the Game Pass value proposition and cloud gaming pipeline. This was always the core bet — and the early data supports it, though the full payoff runs over a decade.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: ACCRETION / DILUTION -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">04</span>
+      <h2 class="section-title">Accretion / Dilution</h2>
+    </div>
+    <p>
+      Microsoft structured the deal as all-cash, avoiding share dilution. The EPS impact therefore hinged on the balance between Activision's earnings contribution and the cost of financing the acquisition — plus the drag from purchase price amortization of intangible assets.
+    </p>
+
+    <div class="accretion-card">
+      <div class="acc-toggle-container">
+        <button class="acc-toggle-btn active" id="btn-non-gaap" onclick="toggleAccretion(false)">Non-GAAP View (Excl. Amortization)</button>
+        <button class="acc-toggle-btn" id="btn-gaap" onclick="toggleAccretion(true)" style="margin-left: 8px;">GAAP View (Incl. Amortization)</button>
+      </div>
+      
+      <div class="acc-grid" id="acc-grid-content">
+        <!-- Accretion rows will be generated dynamically -->
+      </div>
+    </div>
+
+    <p>
+      The deal was <strong>non-GAAP accretive immediately</strong> and only marginally GAAP dilutive in year one — consistent with Microsoft's original guidance. UBS analysts estimated non-GAAP EPS would rise from $12.39 to $12.71 in FY2024 with Activision included. The GAAP picture was dragged by amortization of acquired intangibles, a standard accounting outcome for large IP-heavy acquisitions, not a true economic cost.
+    </p>
+    <p>
+      By FY2024 (first full year post-close), Activision contributed $5.72B in revenue to Microsoft but posted an operating loss of $1.36B — driven by post-merger integration costs and ongoing amortization. The revenue contribution was real; the accounting loss was expected and temporary.
+    </p>
+  </section>
+
+  <!-- SECTION 5: REGULATORY TIMELINE -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">05</span>
+      <h2 class="section-title">The Regulatory Battle</h2>
+    </div>
+    <p style="margin-bottom: 24px;">
+      The deal's 21-month journey from announcement to close was defined almost entirely by regulatory friction — making it one of the most scrutinized tech M&A transactions in history. <strong>Click on each milestone</strong> to review the strategic negotiations and policy outcomes.
+    </p>
+
+    <div class="timeline">
+      
+      <div class="tl-item active" onclick="toggleTimeline(this)">
+        <div class="tl-header">
+          <span class="tl-date">Jan 2022</span>
+          <span class="tl-icon">▼</span>
+        </div>
+        <div class="tl-summary">Microsoft announces $68.7B all-cash acquisition</div>
+        <div class="tl-content">
+          <p class="tl-text">
+            Microsoft announces intent to acquire Activision Blizzard for $95.00 per share. Activision stock jumps ~25% on the day. A $2.0B to $3.0B termination fee clause is included, protecting Activision from regulatory blocks.
+          </p>
+        </div>
+      </div>
+
+      <div class="tl-item" onclick="toggleTimeline(this)">
+        <div class="tl-header">
+          <span class="tl-date">Dec 2022</span>
+          <span class="tl-icon">▼</span>
+        </div>
+        <div class="tl-summary">FTC files lawsuit to block the transaction</div>
+        <div class="tl-content">
+          <p class="tl-text">
+            The US Federal Trade Commission (FTC) files an administrative complaint to block the transaction, citing concerns that owning Call of Duty would allow Microsoft to degrade competitors' consoles, subscription libraries, and cloud platforms.
+          </p>
+        </div>
+      </div>
+
+      <div class="tl-item" onclick="toggleTimeline(this)">
+        <div class="tl-header">
+          <span class="tl-date">Apr 2023</span>
+          <span class="tl-icon">▼</span>
+        </div>
+        <div class="tl-summary">UK's CMA blocks deal; Microsoft makes concessions</div>
+        <div class="tl-content">
+          <p class="tl-text">
+            The UK Competition and Markets Authority (CMA) blocks the merger over cloud gaming concerns. To pivot, Microsoft negotiates a 10-year licensing deal to keep Call of Duty on Nintendo and Sony consoles and restructures the transaction.
+          </p>
+        </div>
+      </div>
+
+      <div class="tl-item" onclick="toggleTimeline(this)">
+        <div class="tl-header">
+          <span class="tl-date">Jul 2023</span>
+          <span class="tl-icon">▼</span>
+        </div>
+        <div class="tl-summary">US Federal Judge denies FTC preliminary injunction</div>
+        <div class="tl-content">
+          <p class="tl-text">
+            A US Federal District Judge rules against the FTC, denying a preliminary injunction. The court finds the FTC failed to show that the merger would substantially lessen competition in the console or cloud gaming space.
+          </p>
+        </div>
+      </div>
+
+      <div class="tl-item" onclick="toggleTimeline(this)">
+        <div class="tl-header">
+          <span class="tl-date">Oct 2023</span>
+          <span class="tl-icon">▼</span>
+        </div>
+        <div class="tl-summary">CMA approves restructured deal; transaction closes</div>
+        <div class="tl-content">
+          <p class="tl-text">
+            The CMA approves a restructured transaction where Microsoft divests Activision's cloud streaming rights outside Europe to Ubisoft for 15 years. The deal officially closes 21 months after the initial announcement.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION 6: VERDICT -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">06</span>
+      <h2 class="section-title">Analyst Verdict</h2>
+    </div>
+
+    <div class="verdict-final">
+      <div class="vf-call">Verdict · Strategic Overpay</div>
+      <div class="vf-head">Great business. Wrong price.<br/>Right strategy. Wrong decade.</div>
+      <p>
+        Microsoft paid a meaningful premium on every conventional valuation metric — 18.2× EBITDA against a sector range of 14–16×, and $95 per share for a stock that had never sustainably traded above its pre-scandal high of $105. The deal was expensive by any traditional measure.
+      </p>
+      <p>
+        The strategic logic holds: cloud gaming and subscription models are where the industry is going, and content libraries are the defensible moat. Activision's franchises are genuinely irreplaceable — Call of Duty alone has over 100 million active players. The revenue synergies materialized faster than most analysts expected, with Xbox content revenue growing 61% in the first quarter post-close.
+      </p>
+      <p>
+        But Microsoft paid for a 10-year thesis at a price that assumed near-perfect execution. The operating losses in FY2024 were expected; the integration costs were front-loaded. The real question — whether Game Pass can scale to a size that justifies $68.7 billion — won't be answered for years. At the price paid, Microsoft needed everything to go right. So far, it mostly has.
+      </p>
+    </div>
+
+    <div class="plain-box">
+      <div class="pb-label">In Plain Terms</div>
+      <p>
+        Microsoft makes Xbox and wants more people to pay a monthly fee to play games on it — like Netflix for gaming. Activision makes some of the most popular games in the world: Call of Duty, World of Warcraft, Candy Crush. Microsoft bought Activision so it could put those games on its subscription service and make it impossible for people to cancel. The price was steep — they paid more than the company was worth on paper, and it took nearly two years to get regulatory approval across three continents. The early numbers show the revenue boost is real. Whether they paid too much depends entirely on how big the gaming subscription business gets over the next decade.
+      </p>
+    </div>
+  </section>
+
+</div><!-- /container -->
 
 <!-- FOOTER -->
 <footer>
-  <span class="footer-name">Priya Sharma</span>
-  <ul class="footer-links">
-    <li><a href="#">Instagram</a></li>
-    <li><a href="#">YouTube</a></li>
-    <li><a href="#">Contact</a></li>
-  </ul>
-  <p class="footer-copy">© 2025 Priya Sharma Fitness. All rights reserved.</p>
+  <div class="footer-inner">
+    <div class="footer-left">
+      Built by <strong style="color:var(--text);">Krish Kapoor</strong> · <a href="#">Velour Media</a><br/>
+      Sources: Microsoft SEC 8-K, Yahoo Finance, FTC filings, UBS equity research · For portfolio purposes only — not investment advice
+    </div>
+    <div class="footer-right">Finance Portfolio · Equity Research</div>
+  </div>
 </footer>
 
 <script>
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) entry.target.classList.add('visible');
+  // ── ACCRETION / DILUTION CONTROLLER ────────────────
+  let showGaap = false;
+  
+  const accretionData = {
+    nonGaap: [
+      { label: "Baseline Microsoft EPS (Pre-Deal FY2022)", value: "$9.70", highlight: false },
+      { label: "Activision Net Income Contribution (EPS Equivalent)", value: "+$0.36", highlight: false },
+      { label: "After-Tax Financing Interest Cost (EPS Equivalent)", value: "-$0.19", highlight: false },
+      { label: "Acquisition Intangibles Amortization (Non-GAAP Excluded)", value: "$0.00", highlight: false },
+      { label: "Pro Forma Non-GAAP EPS (Accretive Impact: +$0.17)", value: "$9.87", highlight: true }
+    ],
+    gaap: [
+      { label: "Baseline Microsoft EPS (Pre-Deal FY2022)", value: "$9.70", highlight: false },
+      { label: "Activision Net Income Contribution (EPS Equivalent)", value: "+$0.36", highlight: false },
+      { label: "After-Tax Financing Interest Cost (EPS Equivalent)", value: "-$0.19", highlight: false },
+      { label: "Acquisition Intangibles Amortization (GAAP Amortization)", value: "-$0.20", highlight: false },
+      { label: "Pro Forma GAAP EPS (Dilutive Impact: -$0.03)", value: "$9.67", highlight: true }
+    ]
+  };
+
+  function toggleAccretion(gaapMode) {
+    showGaap = gaapMode;
+    document.getElementById('btn-gaap').classList.toggle('active', showGaap);
+    document.getElementById('btn-non-gaap').classList.toggle('active', !showGaap);
+    renderAccretion();
+  }
+
+  function renderAccretion() {
+    const list = showGaap ? accretionData.gaap : accretionData.nonGaap;
+    let html = '';
+    for (const row of list) {
+      const cls = row.highlight ? 'acc-row highlight-metric' : 'acc-row';
+      const valColor = row.value.startsWith('-') ? 'style="color: var(--accent2)"' : (row.value.startsWith('+') ? 'style="color: var(--success)"' : '');
+      html += `
+        <div class="${cls}">
+          <span class="ar-label">${row.label}</span>
+          <span class="ar-value" ${valColor}>${row.value}</span>
+        </div>
+      `;
+    }
+    document.getElementById('acc-grid-content').innerHTML = html;
+  }
+
+  // ── TIMELINE CONTROLLER ────────────────────────────
+  function toggleTimeline(element) {
+    const isActive = element.classList.contains('active');
+    
+    // Collapse all items
+    document.querySelectorAll('.tl-item').forEach(item => {
+      item.classList.remove('active');
     });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.reveal, .reveal-delay').forEach(el => observer.observe(el));
+
+    // Toggle selected item
+    if (!isActive) {
+      element.classList.add('active');
+    }
+  }
+
+  // ── ROI SOLVER, WATERFALL & FOOTBALL FIELD MODEL ──
+  const ACQ_PREMIUM = 22.0; // Fixed Acquisition Premium in $B
+  const STANDALONE_VAL = 46.7; // Standalone value of ATVI in $B
+  const PURCHASE_PRICE = 68.7; // Total transaction price in $B
+  let waterfallChart = null;
+  let footballFieldChart = null;
+
+  // Numerical Newton-Raphson Solver for IRR
+  function getNPV(cfs, rate) {
+    let npv = 0;
+    for (let t = 0; t < cfs.length; t++) {
+      npv += cfs[t] / Math.pow(1 + rate, t);
+    }
+    return npv;
+  }
+
+  function getDNPV(cfs, rate) {
+    let dnpv = 0;
+    for (let t = 1; t < cfs.length; t++) {
+      dnpv -= t * cfs[t] / Math.pow(1 + rate, t + 1);
+    }
+    return dnpv;
+  }
+
+  function solveIRR(cfs) {
+    let rate = 0.08; // initial guess
+    const epsilon = 1e-6;
+    for (let iter = 0; iter < 100; iter++) {
+      const npv = getNPV(cfs, rate);
+      const dnpv = getDNPV(cfs, rate);
+      if (Math.abs(dnpv) < 1e-12) break;
+      const newRate = rate - npv / dnpv;
+      if (Math.abs(newRate - rate) < epsilon) {
+        return newRate;
+      }
+      rate = newRate;
+    }
+    return rate;
+  }
+
+  function recalculate() {
+    const costSynergies = +document.getElementById('cost-synergies').value;
+    const gpSubs = +document.getElementById('gp-subs').value;
+    const gpArpu = +document.getElementById('gp-arpu').value;
+    const wacc = +document.getElementById('wacc').value / 100;
+
+    // Update Slider text
+    document.getElementById('val-cost-synergies').textContent = `$${costSynergies}M`;
+    document.getElementById('val-gp-subs').textContent = `${gpSubs.toFixed(1)}M`;
+    document.getElementById('val-gp-arpu').textContent = `$${gpArpu.toFixed(2)}`;
+    document.getElementById('val-wacc').textContent = `${(wacc * 100).toFixed(1)}%`;
+
+    // Calculations:
+    const costB = costSynergies / 1000;
+    const revB = (gpSubs * 12 * gpArpu) / 1000;
+
+    const costNPV = costB / wacc;
+    const revNPV = revB / wacc;
+    const totalNPV = costNPV + revNPV;
+
+    const netValue = totalNPV - ACQ_PREMIUM;
+
+    // Solve IRR for a 10-year cash flow forecast
+    const baseEbitda = 3.78; // $B
+    const standaloneGrowth = 0.05; // 5%
+    const tg = 0.03; // 3% terminal growth
+    const cashFlows = [-PURCHASE_PRICE];
+
+    for (let t = 1; t <= 10; t++) {
+      const standaloneCF = baseEbitda * Math.pow(1 + standaloneGrowth, t);
+      let cf = standaloneCF + costB + revB;
+      if (t === 10) {
+        const tv = cf * (1 + tg) / (wacc - tg);
+        cf += tv;
+      }
+      cashFlows.push(cf);
+    }
+
+    const irr = solveIRR(cashFlows) * 100;
+
+    // Pro Forma Segment ROIC (EBITDA -> EBIT approximation of $2.8B standalone + synergies)
+    const baseEbit = 2.8; 
+    const taxRate = 0.21;
+    const combinedEbit = baseEbit + costB + revB;
+    const roic = (combinedEbit * (1 - taxRate)) / PURCHASE_PRICE * 100;
+
+    // Update Output Cards
+    document.getElementById('out-syn-npv').textContent = `$${totalNPV.toFixed(1)}B`;
+    
+    const outNetVal = document.getElementById('out-net-value');
+    outNetVal.textContent = (netValue >= 0 ? '+' : '') + `$${netValue.toFixed(1)}B`;
+    const cardNetValue = document.getElementById('card-net-value');
+    cardNetValue.className = 'calc-out-card ' + (netValue >= 0 ? 'status-up' : 'status-down');
+
+    const outIrr = document.getElementById('out-irr');
+    outIrr.textContent = irr.toFixed(1) + '%';
+    const cardIrr = document.getElementById('card-irr');
+    cardIrr.className = 'calc-out-card ' + (irr >= wacc * 100 ? 'status-up' : 'status-down');
+
+    const outRoic = document.getElementById('out-roic');
+    outRoic.textContent = roic.toFixed(1) + '%';
+    const cardRoic = document.getElementById('card-roic');
+    cardRoic.className = 'calc-out-card ' + (roic >= wacc * 100 ? 'status-up' : 'status-down');
+
+    // Update charts & tables
+    updateWaterfallChart(costNPV, revNPV, totalNPV, netValue);
+    updateFootballFieldChart(wacc);
+    renderBreakevenMatrix(wacc, costSynergies + revB * 1000);
+  }
+
+  function updateWaterfallChart(costNPV, revNPV, totalNPV, netValue) {
+    const combinedVal = STANDALONE_VAL + totalNPV;
+
+    const dataValues = [
+      [0, STANDALONE_VAL],                      
+      [STANDALONE_VAL, STANDALONE_VAL + costNPV], 
+      [STANDALONE_VAL + costNPV, combinedVal],  
+      [0, combinedVal],                          
+      [0, PURCHASE_PRICE],                       
+      [combinedVal, PURCHASE_PRICE]              
+    ];
+
+    const barColors = [
+      '#1e293b',  
+      '#10b981',  
+      '#06b6d4',  
+      'rgba(6, 182, 212, 0.15)', 
+      '#f43f5e',  
+      netValue >= 0 ? '#10b981' : '#f43f5e' 
+    ];
+
+    if (waterfallChart) {
+      waterfallChart.data.datasets[0].data = dataValues;
+      waterfallChart.data.datasets[0].backgroundColor = barColors;
+      waterfallChart.update('none');
+    } else {
+      const ctx = document.getElementById('waterfallChart').getContext('2d');
+      waterfallChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: [
+            'Standalone',
+            'Cost NPV',
+            'Rev NPV',
+            'Combined EV',
+            'Purchase Price',
+            netValue >= 0 ? 'Value Gained' : 'Value Lost'
+          ],
+          datasets: [{
+            data: dataValues,
+            backgroundColor: barColors,
+            borderRadius: 3,
+            borderSkipped: false
+          }]
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              backgroundColor: '#090b0f',
+              borderColor: 'rgba(255, 255, 255, 0.1)',
+              borderWidth: 1,
+              titleFont: { family: 'Plus Jakarta Sans', weight: '700', size: 11 },
+              bodyFont: { family: 'Inter', size: 11 },
+              callbacks: {
+                label: function(context) {
+                  const val = context.raw;
+                  return ` Value: $${Math.abs(val[1] - val[0]).toFixed(1)}B`;
+                }
+              }
+            }
+          },
+          scales: {
+            x: {
+              grid: { color: 'rgba(255, 255, 255, 0.04)' },
+              ticks: {
+                color: '#64748b',
+                font: { family: 'JetBrains Mono', size: 9 },
+                callback: v => `$${v}B`
+              }
+            },
+            y: {
+              grid: { display: false },
+              ticks: {
+                color: '#f1f5f9',
+                font: { family: 'Plus Jakarta Sans', size: 10, weight: '500' }
+              }
+            }
+          }
+        }
+      });
+    }
+  }
+
+  function updateFootballFieldChart(wacc) {
+    const baseWacc = 0.085;
+    const scale = baseWacc / wacc;
+    
+    // Scale comps and LBO ranges dynamically based on WACC (higher discount rate = lower valuation)
+    const compsMin = 70 * scale;
+    const compsMax = 85 * scale;
+    const lboMin = 65 * scale;
+    const lboMax = 78 * scale;
+    const precedentMin = 80;
+    const precedentMax = 98;
+
+    const dataValues = [
+      [lboMin, lboMax],
+      [compsMin, compsMax],
+      [precedentMin, precedentMax]
+    ];
+
+    if (footballFieldChart) {
+      footballFieldChart.data.datasets[0].data = dataValues;
+      footballFieldChart.update('none');
+    } else {
+      const ctx = document.getElementById('footballFieldChart').getContext('2d');
+      footballFieldChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: [
+            'LBO Valuation (15% Target IRR)',
+            'Public Comps (14-16x EBITDA)',
+            'Precedent Transactions (16-18x)'
+          ],
+          datasets: [{
+            data: dataValues,
+            backgroundColor: [
+              'rgba(255, 255, 255, 0.04)',
+              'rgba(6, 182, 212, 0.15)',
+              'rgba(245, 158, 11, 0.15)'
+            ],
+            borderColor: [
+              'rgba(255,255,255,0.2)',
+              'var(--accent)',
+              'var(--accent3)'
+            ],
+            borderWidth: 1,
+            borderRadius: 3,
+            borderSkipped: false
+          }]
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          layout: {
+            padding: {
+              top: 15
+            }
+          },
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              backgroundColor: '#090b0f',
+              borderColor: 'rgba(255, 255, 255, 0.1)',
+              borderWidth: 1,
+              titleFont: { family: 'Plus Jakarta Sans', weight: '700', size: 11 },
+              bodyFont: { family: 'Inter', size: 11 },
+              callbacks: {
+                label: function(context) {
+                  const val = context.raw;
+                  return ` Range: $${val[0].toFixed(1)} - $${val[1].toFixed(1)}`;
+                }
+              }
+            }
+          },
+          scales: {
+            x: {
+              grid: { color: 'rgba(255, 255, 255, 0.04)' },
+              min: 50,
+              max: 110,
+              ticks: {
+                color: '#64748b',
+                font: { family: 'JetBrains Mono', size: 9 },
+                callback: v => `$${v}`
+              }
+            },
+            y: {
+              grid: { display: false },
+              ticks: {
+                color: '#f1f5f9',
+                font: { family: 'Plus Jakarta Sans', size: 10, weight: '500' }
+              }
+            }
+          }
+        },
+        plugins: [{
+          id: 'offerPriceLine',
+          afterDraw: function(chart) {
+            const ctx = chart.ctx;
+            const xAxis = chart.scales.x;
+            if (!xAxis) return;
+            const xPixel = xAxis.getPixelForValue(95.00);
+            
+            ctx.save();
+            ctx.beginPath();
+            ctx.strokeStyle = '#06b6d4'; // Cyan color
+            ctx.lineWidth = 2;
+            ctx.setLineDash([5, 4]);
+            ctx.moveTo(xPixel, chart.chartArea.top);
+            ctx.lineTo(xPixel, chart.chartArea.bottom);
+            ctx.stroke();
+            
+            // Draw label
+            ctx.fillStyle = '#06b6d4';
+            ctx.font = 'bold 9px "JetBrains Mono", monospace';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'bottom';
+            ctx.fillText('OFFER PRICE ($95.00)', xPixel, chart.chartArea.top - 4);
+            ctx.restore();
+          }
+        }]
+      });
+    }
+  }
+
+  function renderBreakevenMatrix(activeWacc, currentSynergies) {
+    const waccSteps = [0.075, 0.08, 0.085, 0.09, 0.095];
+    const premiumB = 22.0; // $B
+    
+    let html = `
+      <thead>
+        <tr>
+          <th>WACC</th>
+          <th>Required Annual Synergies to Break-Even ($M)</th>
+          <th>Assessment vs. Current (${Math.round(currentSynergies)}M)</th>
+        </tr>
+      </thead>
+      <tbody>
+    `;
+
+    for (const w of waccSteps) {
+      const requiredSynergies = Math.round(premiumB * w * 1000);
+      const diff = Math.round(currentSynergies) - requiredSynergies;
+      const isWaccActive = Math.abs(w - activeWacc) < 0.001;
+      const rowClass = isWaccActive ? 'class="active-be-row"' : '';
+      
+      let assessTag = '';
+      if (diff >= 0) {
+        assessTag = `<span class="tag tag-low" style="font-size:9px;">Fully Covered (+$${diff}M)</span>`;
+      } else {
+        assessTag = `<span class="tag tag-high" style="font-size:9px;">Deficit (-$${Math.abs(diff)}M)</span>`;
+      }
+
+      html += `
+        <tr ${rowClass}>
+          <td>${(w * 100).toFixed(1)}%</td>
+          <td>$${requiredSynergies}M / year</td>
+          <td>${assessTag}</td>
+        </tr>
+      `;
+    }
+    html += '</tbody>';
+    document.getElementById('breakeven-table').innerHTML = html;
+  }
+
+  // ── INITIALIZATION ─────────────────────────────────
+  const sliderIds = ['cost-synergies', 'gp-subs', 'gp-arpu', 'wacc'];
+  sliderIds.forEach(id => {
+    document.getElementById(id).addEventListener('input', recalculate);
+  });
+
+  toggleAccretion(false);
+  recalculate();
 </script>
+
 </body>
 </html>
